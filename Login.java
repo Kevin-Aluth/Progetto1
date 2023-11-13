@@ -42,10 +42,9 @@ public class Login {
     public ArrayList<Account> getAccounts(){
         return accounts; 
     }
-    public void setAccount(Account account){
+    public void addToAccount(Account account){
         accounts.add(account); 
     }
-}
 
     public void cambiaPassword(Account account) {
         Scanner scanner = new Scanner(System.in);
@@ -78,6 +77,4 @@ public class Login {
         }
     }
 
-
-    //add singletony
 }

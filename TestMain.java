@@ -20,10 +20,10 @@ public class TestMain {
             switch (scelta) {
                 case 1:
                     System.out.println("LOGIN");
-                    // System.out.println("Inserisci username: ");
-                    // String username = scanner.next();
-                    // System.out.println("Inserisci password: ");
-                    // String password = scanner.next();
+                    System.out.println("Inserisci username: ");
+                    String username = scanner.nextLine();
+                    System.out.println("Inserisci password: ");
+                    String password = scanner.nextLine();
                     break;
                 case 2:
                     System.out.println("Arrivederci!");
