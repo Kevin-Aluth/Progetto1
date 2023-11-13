@@ -13,14 +13,23 @@ import java.util.Scanner;
 
 public class Login {
     ArrayList<Account> accounts = new ArrayList<>();
-    Login instance = null; 
+    static Login instance = null; 
 
     private Login(){}
-    public Login LoginClass(){
+    public static Login LoginClass(){
         if(instance == null){
-            instance = this; 
+            instance = new Login(); 
         }
         return instance;
+    }
+
+    public boolean checkUsername(String username){
+        for(int i = 0; i < accounts.size(); i++){
+            if(accounts.get(i).getUsername() == username){
+                return true; 
+            }
+        }
+        return false;
     }
 
     public Account checkLogin(String username, String password){
@@ -42,6 +51,7 @@ public class Login {
     public ArrayList<Account> getAccounts(){
         return accounts; 
     }
+
     public void addToAccount(Account account){
         accounts.add(account); 
     }
