@@ -2,8 +2,19 @@ import java.util.ArrayList;
 
 public class Login {
     ArrayList<Account> accounts = new ArrayList<>();
+    Login instance = null; 
 
-    Account checkLogin(String username, String password)
+    private Login(){}
+    public Login LoginClass()
+    {
+        if(instance == null)
+        {
+            instance = this; 
+        }
+        return instance;
+    }
+
+    public Account checkLogin(String username, String password)
     {
         Account activeAccount = null;  
         
@@ -22,6 +33,4 @@ public class Login {
         }
         return activeAccount; 
     }
-
-    //add singleton
 }
