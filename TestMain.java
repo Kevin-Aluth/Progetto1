@@ -2,7 +2,8 @@ import java.util.Scanner;
 
 public class TestMain {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner stringScanner = new Scanner(System.in);
+        Scanner intScanner = new Scanner(System.in); 
         int scelta = 0;
         String risposta = "";
 
@@ -16,20 +17,18 @@ public class TestMain {
                 System.out.println("3. Esci");
                 System.out.print("Inserisci la tua scelta: ");
 
-                scelta = scanner.nextInt();
+                scelta = intScanner.nextInt();
                 if(scelta < 1 || scelta > 3) System.out.println("Scelta non valida");
             } while(scelta < 1 || scelta > 3);
 
             switch (scelta) {
                 case 1:
-                    Scanner scanner1 = new Scanner(System.in);
                     System.out.println("Inserisci username: ");
-                    String username = scanner1.nextLine();
+                    String username = stringScanner.nextLine();
                     System.out.println("Inserisci password: ");
-                    String password = scanner1.nextLine();
+                    String password = stringScanner.nextLine();
 
-                    Account account = new Account(username, password);
-                    account = login.checkLogin(username, password);
+                    Account account = login.checkLogin(username, password);
                     if(account == null){
                         System.out.println("Username o password errati");
                         break;
@@ -45,7 +44,7 @@ public class TestMain {
                             System.out.println("4. Elimina account");
                             System.out.println("5. Esci");
 
-                            scelta2 = scanner.nextInt();
+                            scelta2 = intScanner.nextInt();
                             
                             if (scelta2 < 1 || scelta2 > 5) System.out.println("Scelta non valida");
                         } while(scelta2 < 1 || scelta2 > 5);
@@ -53,13 +52,13 @@ public class TestMain {
                         switch(scelta2){
                             case 1:
                                 System.out.println("Inserisci il tuo nome: ");
-                                String nome = scanner.nextLine();
+                                String nome = stringScanner.nextLine();
                                 System.out.println("Inserisci il tuo cognome: ");
-                                String cognome = scanner.nextLine();
+                                String cognome = stringScanner.nextLine();
                                 System.out.println("Inserisci la tua email: ");
-                                String email = scanner.nextLine();
+                                String email = stringScanner.nextLine();
                                 System.out.println("Inserisci il tuo indirizzo: ");
-                                String indirizzo = scanner.nextLine();
+                                String indirizzo = stringScanner.nextLine();
                                 account.setNome(nome);
                                 account.setCognome(cognome);
                                 account.setEmail(email);
@@ -91,9 +90,8 @@ public class TestMain {
                     
                     break;
                 case 2:
-                    Scanner scanner2 = new Scanner(System.in);
                     System.out.println("Inserisci username: ");
-                    String username2 = scanner2.nextLine();
+                    String username2 = stringScanner.nextLine();
 
                     if(login.checkUsername(username2)){
                         System.out.println("Username già esistente");
@@ -101,9 +99,10 @@ public class TestMain {
                     }
                     
                     System.out.println("Inserisci password: ");
-                    String password2 = scanner2.nextLine();
+                    String password2 = stringScanner.nextLine();
                     Account account2 = new Account(username2, password2);
                     login.addToAccount(account2);
+                    System.out.println(login.getAccounts());
                     break;
                 case 3:
                     System.out.println("Arrivederci!");
@@ -113,12 +112,21 @@ public class TestMain {
                     System.out.println("Scelta non valida");
                     break;
             }
-
-            System.out.print("Vuoi tornare al menu? (si / no)  ");
-            risposta = scanner.next();
-            if(risposta.equalsIgnoreCase("no")) {
-                System.out.println("Arrivederci!");
-                System.exit(0);
+            risposta = ""; 
+            while(!risposta.replaceAll(" ", "").equalsIgnoreCase("si")){
+                System.out.print("Vuoi tornare al menu? (si / no)  ");
+                risposta = stringScanner.nextLine();
+                risposta = risposta.replaceAll(" ", "").toLowerCase(); 
+                switch(risposta){
+                    case "no": 
+                        System.out.println("Arrivederci!");
+                        System.exit(0);
+                        break; 
+                    case "si": 
+                        break; 
+                    default: 
+                        System.out.println("Selezionare un'opzione valida");
+                }
             }
 
         } while(risposta.equalsIgnoreCase("si"));

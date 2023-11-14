@@ -76,4 +76,9 @@ class Account {
         }
         
     }
+
+    @Override
+    public String toString(){
+        return username; 
+    }
 }

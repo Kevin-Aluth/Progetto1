@@ -25,7 +25,7 @@ public class Login {
 
     public boolean checkUsername(String username){
         for(int i = 0; i < accounts.size(); i++){
-            if(accounts.get(i).getUsername() == username){
+            if(accounts.get(i).getUsername().equals(username)){
                 return true; 
             }
         }
@@ -36,13 +36,18 @@ public class Login {
         Account activeAccount = null;  
         
         for(int i = 0; i < accounts.size(); i++){
-            if(accounts.get(i).getUsername() == username){
+            if(accounts.get(i).getUsername().equals(username)){
+                System.out.println("Account found");
                 activeAccount = accounts.get(i); 
                 break; 
             }
         }
-        if(activeAccount == null) return null; 
-        if(activeAccount.getPassword() != password){
+        if(activeAccount == null) {
+            System.out.println("account not found");
+            return null; 
+        }
+        if(!activeAccount.getPassword().equals(password)){
+            System.out.println("password incorrect");
             return null; 
         }
         return activeAccount; 
