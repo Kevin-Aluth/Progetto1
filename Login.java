@@ -24,6 +24,13 @@ public class Login {
         return instance;
     }
 
+    public int getCounter(){
+        return counter; 
+    }
+    public void setCounter(int counter) {
+        this.counter = counter;
+    }
+
     public boolean checkUsername(String username){
         for(int i : accounts.keySet()){
             if(accounts.get(i).getUsername().equals(username)){
@@ -62,6 +69,10 @@ public class Login {
         accounts.put(counter, account); 
         accounts.get(counter).setId(counter);
         counter++; 
+    }
+
+    public void setAccounts(HashMap<Integer, Account> accounts){
+        this.accounts = accounts; 
     }
 
     public void removeAccount(int id){

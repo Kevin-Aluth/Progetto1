@@ -9,6 +9,7 @@ public class TestMain {
         int tentativi = 3;
 
         Login login = Login.LoginClass();
+        login.setAccounts(Backup.readBackup());
         
         do{
             do{
