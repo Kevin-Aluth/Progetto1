@@ -6,6 +6,7 @@ public class TestMain {
         Scanner intScanner = new Scanner(System.in); 
         int scelta = 0;
         String risposta = "";
+        int tentativi = 3;
 
         Login login = Login.LoginClass();
         
@@ -31,6 +32,8 @@ public class TestMain {
                     Account account = login.checkLogin(username, password);
                     if(account == null){
                         System.out.println("Username o password errati");
+                        tentativi--;
+                        System.out.println("\nTentativi rimasti: " + tentativi);
                         break;
                     }
 
@@ -44,7 +47,7 @@ public class TestMain {
                             System.out.println("4. Elimina account");
                             System.out.println("5. Esci");
 
-                            scelta2 = stringScanner.nextInt();
+                            scelta2 = intScanner.nextInt();
                             
                             if (scelta2 < 1 || scelta2 > 5) System.out.println("Scelta non valida");
                         } while(scelta2 < 1 || scelta2 > 5);
@@ -77,6 +80,7 @@ public class TestMain {
                             case 4:
                                 login.getAccounts().remove(account);
                                 account = null;
+                                System.out.println("Account eliminato");
                                 break;
                             case 5:
                                 System.out.println("Arrivederci!");
@@ -112,23 +116,30 @@ public class TestMain {
                     System.out.println("Scelta non valida");
                     break;
             }
-            risposta = ""; 
-            while(!risposta.replaceAll(" ", "").equalsIgnoreCase("si")){
-                System.out.print("Vuoi tornare al menu? (si / no)  ");
-                risposta = stringScanner.nextLine();
-                risposta = risposta.replaceAll(" ", "").toLowerCase(); 
-                switch(risposta){
-                    case "no": 
-                        System.out.println("Arrivederci!");
-                        System.exit(0);
-                        break; 
-                    case "si": 
-                        break; 
-                    default: 
-                        System.out.println("Selezionare un'opzione valida");
+
+            if(tentativi > 0){
+                risposta = ""; 
+                while(!risposta.replaceAll(" ", "").equalsIgnoreCase("si")){
+                    System.out.print("Vuoi tornare al menu? (si / no)  ");
+                    risposta = stringScanner.nextLine();
+                    risposta = risposta.replaceAll(" ", "").toLowerCase(); 
+                    switch(risposta){
+                        case "no": 
+                            System.out.println("Arrivederci!");
+                            System.exit(0);
+                            break; 
+                        case "si": 
+                            break; 
+                        default: 
+                            System.out.println("Selezionare un'opzione valida");
+                    }
                 }
+            } else {
+                System.out.println("Hai esaurito i tentativi");
+                System.out.println("Arrivederci!");
+                System.exit(0);
             }
 
-        } while(risposta.equalsIgnoreCase("si"));
+        } while(risposta.equalsIgnoreCase("si") && tentativi > 0);
     }
 }
