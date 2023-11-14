@@ -38,6 +38,7 @@ public class TestMain {
                     }
 
                     while (account != null){
+                        int accountId = account.getId(); 
                         int scelta2 = 0;
                         do{
                             System.out.println("Menu:");
@@ -78,7 +79,7 @@ public class TestMain {
                                 login.cambiaPassword(account);
                                 break;
                             case 4:
-                                login.getAccounts().remove(account);
+                                login.removeAccount(login.getAccounts().get(accountId).getId());
                                 account = null;
                                 System.out.println("Account eliminato");
                                 break;
@@ -106,7 +107,6 @@ public class TestMain {
                     String password2 = stringScanner.nextLine();
                     Account account2 = new Account(username2, password2);
                     login.addToAccount(account2);
-                    System.out.println(login.getAccounts());
                     break;
                 case 3:
                     System.out.println("Arrivederci!");

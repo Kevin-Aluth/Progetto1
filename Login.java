@@ -8,12 +8,13 @@
     Aggiornare la password nell'archivio dati.
 */
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.HashMap; 
+import java.util.Scanner; 
 
 public class Login {
-    ArrayList<Account> accounts = new ArrayList<>();
+    HashMap<Integer, Account> accounts = new HashMap<>();
     static Login instance = null; 
+    int counter = 1; 
 
     private Login(){}
     public static Login LoginClass(){
@@ -24,7 +25,7 @@ public class Login {
     }
 
     public boolean checkUsername(String username){
-        for(int i = 0; i < accounts.size(); i++){
+        for(int i : accounts.keySet()){
             if(accounts.get(i).getUsername().equals(username)){
                 return true; 
             }
@@ -35,7 +36,7 @@ public class Login {
     public Account checkLogin(String username, String password){
         Account activeAccount = null;  
         
-        for(int i = 0; i < accounts.size(); i++){
+        for(int i : accounts.keySet()){
             if(accounts.get(i).getUsername().equals(username)){
                 System.out.println("Account found");
                 activeAccount = accounts.get(i); 
@@ -53,12 +54,18 @@ public class Login {
         return activeAccount; 
     }
 
-    public ArrayList<Account> getAccounts(){
+    public HashMap<Integer, Account> getAccounts(){
         return accounts; 
     }
 
     public void addToAccount(Account account){
-        accounts.add(account); 
+        accounts.put(counter, account); 
+        accounts.get(counter).setId(counter);
+        counter++; 
+    }
+
+    public void removeAccount(int id){
+        accounts.remove(id); 
     }
 
     public void cambiaPassword(Account account) {

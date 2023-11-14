@@ -1,8 +1,7 @@
 class Account {
     private String username; 
     private String password;
-    private int id;
-    public static int idProgressivo = 1;
+    private int id = 0; 
     private String nome;
     private String cognome;
     private String email;
@@ -11,8 +10,12 @@ class Account {
     public Account(String username, String password){
         this.username=username;
         this.password=password;
-        this.id=idProgressivo;
-        idProgressivo++;
+    }
+
+    public int getId(){
+        return id; 
+    } public void setId(int value){
+        if(id == 0)id = value; 
     }
 
     public String getUsername(){
@@ -22,10 +25,6 @@ class Account {
 
     public String getPassword(){
         return password;
-    }
-
-    public int getId(){
-        return id;
     }
 
     public void setUsername(String username){
