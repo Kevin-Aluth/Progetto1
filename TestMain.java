@@ -44,7 +44,7 @@ public class TestMain {
                             System.out.println("4. Elimina account");
                             System.out.println("5. Esci");
 
-                            scelta2 = intScanner.nextInt();
+                            scelta2 = stringScanner.nextInt();
                             
                             if (scelta2 < 1 || scelta2 > 5) System.out.println("Scelta non valida");
                         } while(scelta2 < 1 || scelta2 > 5);
