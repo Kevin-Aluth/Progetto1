@@ -16,6 +16,7 @@ class Account {
         indirizzo = " "; 
     }
 
+    //getter e setter
     public int getId(){
         return id; 
     } public void setId(int value){
@@ -25,49 +26,37 @@ class Account {
     public String getUsername(){
         return username;
 
+    } public void setUsername(String username){
+        this.username=username;
     }
 
     public String getPassword(){
         return password;
-    }
-
-    public void setUsername(String username){
-        this.username=username;
-    }
-
-    public void setPassword(String password){
+    } public void setPassword(String password){
         this.password=password;
     }
 
     public String getNome(){
         return nome;
+    } public void setNome(String nome){
+        this.nome=nome;
     }
 
     public String getCognome(){
         return cognome;
+    } public void setCognome(String cognome){
+        this.cognome=cognome;
     }
 
     public String getEmail(){
         return email;
+    } public void setEmail(String email){
+        this.email=email;
     }
 
     public String getIndirizzo(){
         return indirizzo;
-    }
-
-    public void setNome(String nome){
-        this.nome=nome;
-    }
-
-    public void setCognome(String cognome){
-        this.cognome=cognome;
-    }
-
-    public void setEmail(String email){
-        this.email=email;
-    }
-
-    public void setIndirizzo(String indirizzo){
+    } public void setIndirizzo(String indirizzo){
         this.indirizzo=indirizzo;
     }
 

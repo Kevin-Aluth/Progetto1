@@ -26,8 +26,7 @@ public class Login {
 
     public int getCounter(){
         return counter; 
-    }
-    public void setCounter(int counter) {
+    } public void setCounter(int counter) {
         this.counter = counter;
     }
 

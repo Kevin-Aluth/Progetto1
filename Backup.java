@@ -4,6 +4,7 @@ import java.io.*;
 public class Backup {
     private static String path = "backup.txt";
 
+    //leggendo il backup dal file di testo
     public static HashMap readBackup(){
         HashMap<Integer, Account> accounts = new HashMap<>();
         try(FileReader fr = new FileReader(path);
@@ -34,6 +35,7 @@ public class Backup {
         return accounts;
     }
 
+    //rimuovere la riga di testo con le info
     public static void removeFromBackup(int id)
     {
         String content = "";
@@ -58,6 +60,7 @@ public class Backup {
         }
     }
 
+    //salvare in una linea di testo le info dell'account
     public static void saveToBackup(Account account){
         String toWrite = ""; 
         toWrite+=account.getUsername() + ";"; 
@@ -76,6 +79,7 @@ public class Backup {
         }
     }
 
+    //cambiare sul file di testo le info dell'account
     public static void updateAccount(Account account){
         String content = "";
         try(FileReader fr = new FileReader(path);
