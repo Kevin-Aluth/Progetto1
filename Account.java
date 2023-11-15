@@ -10,6 +10,10 @@ class Account {
     public Account(String username, String password){
         this.username=username;
         this.password=password;
+        nome = " "; 
+        cognome = " "; 
+        email = " "; 
+        indirizzo = " "; 
     }
 
     public int getId(){

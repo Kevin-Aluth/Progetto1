@@ -45,7 +45,7 @@ public class TestMain {
                             System.out.println("Menu:");
                             System.out.println("1. Aggiungi informazioni");
                             System.out.println("2. Visualizza le informazioni");
-                            System.out.println("3. Modifica le informazioni");
+                            System.out.println("3. Modifica la password");
                             System.out.println("4. Elimina account");
                             System.out.println("5. Esci");
 
@@ -56,18 +56,19 @@ public class TestMain {
                         
                         switch(scelta2){
                             case 1:
-                                System.out.println("Inserisci il tuo nome: ");
+                                System.out.println("Inserisci il tuo nome (non scrivere nulla se non vuoi cambiarlo): ");
                                 String nome = stringScanner.nextLine();
-                                System.out.println("Inserisci il tuo cognome: ");
+                                System.out.println("Inserisci il tuo cognome (non scrivere nulla se non vuoi cambiarlo): ");
                                 String cognome = stringScanner.nextLine();
-                                System.out.println("Inserisci la tua email: ");
+                                System.out.println("Inserisci la tua email (non scrivere nulla se non vuoi cambiarla): ");
                                 String email = stringScanner.nextLine();
-                                System.out.println("Inserisci il tuo indirizzo: ");
+                                System.out.println("Inserisci il tuo indirizzo (non scrivere nulla se non vuoi cambiarlo): ");
                                 String indirizzo = stringScanner.nextLine();
-                                account.setNome(nome);
-                                account.setCognome(cognome);
-                                account.setEmail(email);
-                                account.setIndirizzo(indirizzo);
+                                if(!nome.replaceAll(" ", "").equals(""))account.setNome(nome);
+                                if(!cognome.replaceAll(" ", "").equals(""))account.setCognome(cognome);
+                                if(!email.replaceAll(" ", "").equals(""))account.setEmail(email);
+                                if(!indirizzo.replaceAll(" ", "").equals(""))account.setIndirizzo(indirizzo);
+                                Backup.updateAccount(account);
                                 break;
                             case 2:
                                 System.out.println("Username: " + account.getUsername());
@@ -78,9 +79,11 @@ public class TestMain {
                                 break;
                             case 3:
                                 login.cambiaPassword(account);
+                                Backup.updateAccount(account); 
                                 break;
                             case 4:
                                 login.removeAccount(login.getAccounts().get(accountId).getId());
+                                Backup.removeFromBackup(accountId);
                                 account = null;
                                 System.out.println("Account eliminato");
                                 break;
@@ -108,6 +111,7 @@ public class TestMain {
                     String password2 = stringScanner.nextLine();
                     Account account2 = new Account(username2, password2);
                     login.addToAccount(account2);
+                    Backup.saveToBackup(account2);
                     break;
                 case 3:
                     System.out.println("Arrivederci!");
