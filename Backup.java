@@ -66,11 +66,11 @@ public class Backup {
         toWrite+=account.getCognome() + ";";
         toWrite+=account.getEmail() + ";"; 
         toWrite+=account.getIndirizzo() + ";";
-        toWrite+=account.getId() + ";"; 
+        toWrite+=account.getId(); 
         
         try(FileWriter fw = new FileWriter(path, true); 
         BufferedWriter bw = new BufferedWriter(fw)){
-            bw.write(toWrite);
+            bw.write(toWrite + "\n");
         } catch(IOException e){
             System.out.println("Errore nella lettura dei file");
         }

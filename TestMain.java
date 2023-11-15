@@ -103,13 +103,18 @@ public class TestMain {
                     String username2 = stringScanner.nextLine();
 
                     if(login.checkUsername(username2)){
-                        System.out.println("Username già esistente");
+                        System.out.println("Username gia' esistente");
                         break;
                     }
                     
                     System.out.println("Inserisci password: ");
+                    Account account2 = new Account(username2, ""); 
                     String password2 = stringScanner.nextLine();
-                    Account account2 = new Account(username2, password2);
+                    while(password2.length() < 8){
+                        System.out.println("La password deve essere almeno di otto caratteri, riprovare: ");
+                        password2 = stringScanner.nextLine(); 
+                    }
+                    account2.setPassword(password2);
                     login.addToAccount(account2);
                     Backup.saveToBackup(account2);
                     break;
